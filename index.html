@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dữ liệu Arduino</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #data { font-size: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Giám sát Nhiệt độ & Độ ẩm</h1>
+    <p id="data">Đang tải dữ liệu...</p>
+
+    <script>
+        async function loadData() {
+            const response = await fetch("data.json"); // Lấy dữ liệu từ file JSON
+            const data = await response.json();
+            document.getElementById("data").innerHTML = `Nhiệt độ: ${data.nhietDo}°C, Độ ẩm: ${data.doAm}%`;
+        }
+        setInterval(loadData, 5000); // Cập nhật dữ liệu mỗi 5 giây
+        loadData();
+    </script>
+</body>
+</html>
